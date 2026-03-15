@@ -3,99 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ST NEWS TV LKO | ताज़ा खबरें</title>
+    <title>ST NEWS TV LKO | लखनऊ की सच्ची खबरें</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        body {
-            font-family: 'Hind', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+        :root {
+            --main-red: #cc0000;
+            --dark-blue: #001f3f;
+            --gold: #ffd700;
         }
 
-        /* न्यूज़ टिकर स्टाइल */
-        .ticker-container {
+        body {
+            font-family: 'Tiro Devanagari Hindi', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e9ecef;
+            color: #333;
+        }
+
+        /* टॉप हेडर */
+        .header {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, #003366 100%);
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+            border-bottom: 4px solid var(--gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: var(--gold);
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* लोकेशन और डेट बार */
+        .info-bar {
+            background: #fff;
+            padding: 5px 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+
+        /* न्यूज़ टिकर */
+        .ticker-wrap {
             width: 100%;
-            background: #ff0000;
+            background: var(--main-red);
             color: #fff;
-            padding: 10px 0;
             overflow: hidden;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .ticker-label {
+            background: #000;
+            padding: 0 15px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            z-index: 2;
+            position: relative;
         }
 
         .ticker-text {
-            display: inline-block;
             white-space: nowrap;
-            animation: scroll-left 15s linear infinite;
-            font-weight: bold;
-            font-size: 18px;
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+            font-size: 1.1rem;
+            padding-left: 20px;
         }
 
-        @keyframes scroll-left {
+        @keyframes scroll {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
 
-        /* मेन कंटेंट */
-        .content {
-            margin-top: 80px;
+        /* मुख्य एरिया */
+        .main-container {
+            max-width: 800px;
+            margin: 40px auto;
             padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
         }
 
+        .mission-box {
+            border-left: 5px solid var(--main-red);
+            background: #fff5f5;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+            border-radius: 0 10px 10px 0;
+        }
+
         /* 3D सोशल बटन्स */
-        .social-buttons {
-            display: flex;
-            justify-content: center;
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 20px;
-            margin-top: 50px;
+            margin-top: 30px;
         }
 
         .btn-3d {
-            padding: 15px 25px;
-            font-size: 18px;
-            text-decoration: none;
+            position: relative;
+            padding: 15px;
             color: white;
-            border-radius: 10px;
-            display: inline-block;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 9px #999;
+            text-decoration: none;
             font-weight: bold;
+            border-radius: 12px;
+            display: block;
+            transition: all 0.1s;
+            box-shadow: 0 8px 0 #00000033;
+            font-family: 'Poppins', sans-serif;
         }
 
         .btn-3d:active {
-            box-shadow: 0 5px #666;
             transform: translateY(4px);
+            box-shadow: 0 4px 0 #00000033;
         }
 
-        .youtube { background-color: #FF0000; }
-        .whatsapp { background-color: #25D366; }
-        .instagram { background-color: #E1306C; }
+        .yt { background: #FF0000; border: 1px solid #b30000; }
+        .wa { background: #25D366; border: 1px solid #1da851; }
+        .tg { background: #0088cc; border: 1px solid #006da3; }
 
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #666;
+        }
     </style>
 </head>
 <body>
 
-    <div class="ticker-container">
-        <div class="ticker-text">
-            ब्रेकिंग न्यूज़: ST NEWS TV LKO पर आपका स्वागत है... लखनऊ की ताज़ा खबरों के लिए हमसे जुड़े रहें... सच्ची खबरें, बिना किसी मिलावट के...
-        </div>
-    </div>
-
-    <div class="content">
+    <div class="header">
         <h1>ST NEWS TV LKO</h1>
-        <p>असहाय लोगों की मदद और सच्ची पत्रकारिता का संकल्प।</p>
+        <p>Dialogue • Tolerance • Co-existence</p>
+    </div>
 
-        <div class="social-buttons">
-            <a href="#" class="btn-3d youtube">YouTube</a>
-            <a href="#" class="btn-3d whatsapp">WhatsApp</a>
-            <a href="#" class="btn-3d instagram">Instagram</a>
+    <div class="info-bar">
+        <span>📍 लखनऊ, उत्तर प्रदेश</span>
+        <span id="current-date"></span>
+    </div>
+
+    <div class="ticker-wrap">
+        <div class="ticker-label">BREAKING ⚡</div>
+        <div class="ticker-text">
+            ST न्यूज़ टीवी लखनऊ: सच्ची खबरें, बिना किसी मिलावट के... असहाय लोगों की मदद के लिए सदैव तत्पर... लखनऊ की ताज़ा जानकारियों के लिए हमारे सोशल मीडिया से जुड़ें...
         </div>
     </div>
+
+    <div class="main-container">
+        <h2>आपका स्वागत है</h2>
+        <div class="mission-box">
+            "हमारा उद्देश्य केवल समाचार देना नहीं, बल्कि समाज में संवाद और सहयोग को बढ़ावा देना है।"
+        </div>
+
+        <div class="social-grid">
+            <a href="https://youtube.com/@stnewstvlko" target="_blank" class="btn-3d yt">YOUTUBE</a>
+            <a href="#" class="btn-3d wa">WHATSAPP</a>
+            <a href="#" class="btn-3d tg">TELEGRAM</a>
+        </div>
+    </div>
+
+    <center>
+        <footer>
+            &copy; 2026 STNEWSTVLKO Media Group. All Rights Reserved.
+        </footer>
+    </center>
+
+    <script>
+        // आज की तारीख दिखाने के लिए
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').innerHTML = new Date().toLocaleDateString('hi-IN', options);
+    </script>
 
 </body>
 </html>
