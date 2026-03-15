@@ -12,76 +12,86 @@
             --main-red: #cc0000;
             --dark-blue: #001f3f;
             --gold: #ffd700;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        * { box-sizing: border-box; }
+        * { 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent; /* मोबाइल टच हाईलाइट हटाता है */
+        }
 
         body {
             font-family: 'Tiro Devanagari Hindi', serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6;
+            background-color: #f0f2f5;
             color: #333;
-            overflow-x: hidden; /* स्क्रीन से बाहर न जाए */
+            overflow-x: hidden;
+            line-height: 1.5;
         }
 
-        /* प्रोफेशनल मोबाइल हेडर */
+        /* फिक्स्ड हेडर मोबाइल के लिए */
         .header {
             background: linear-gradient(135deg, var(--dark-blue) 0%, #003366 100%);
             color: white;
-            padding: 15px 10px;
+            padding: 12px 10px;
             text-align: center;
             border-bottom: 3px solid var(--gold);
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .header h1 {
             margin: 0;
-            font-size: 1.8rem; /* मोबाइल के लिए छोटा साइज */
+            font-size: 1.6rem; 
             color: var(--gold);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
         }
 
-        /* लोकेशन और डेट बार */
+        /* लोकेशन बार */
         .info-bar {
             background: #fff;
-            padding: 8px 12px;
+            padding: 6px 15px;
             display: flex;
             justify-content: space-between;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             border-bottom: 1px solid #ddd;
             font-weight: bold;
+            color: #555;
         }
 
-        /* न्यूज़ टिकर (ब्रेकिंग न्यूज़) */
+        /* ब्रेकिंग न्यूज़ पट्टी */
         .ticker-wrap {
             width: 100%;
             background: var(--main-red);
             color: #fff;
             overflow: hidden;
-            height: 35px;
+            height: 38px;
             display: flex;
             align-items: center;
         }
 
         .ticker-label {
             background: #000;
-            padding: 0 10px;
+            padding: 0 12px;
             height: 100%;
             display: flex;
             align-items: center;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: bold;
-            z-index: 2;
+            z-index: 5;
+            flex-shrink: 0;
         }
 
         .ticker-text {
             white-space: nowrap;
             display: inline-block;
-            animation: scroll 15s linear infinite;
+            animation: scroll 18s linear infinite;
             font-size: 1rem;
+            padding-left: 10px;
         }
 
         @keyframes scroll {
@@ -89,15 +99,15 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* मेन कंटेनर */
+        /* मेन कार्ड */
         .main-container {
-            width: 95%;
-            max-width: 600px;
+            width: 92%;
+            max-width: 500px;
             margin: 20px auto;
-            padding: 20px;
+            padding: 25px 20px;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
             text-align: center;
         }
 
@@ -105,51 +115,65 @@
             font-size: 0.95rem;
             line-height: 1.6;
             color: #444;
-            margin-bottom: 20px;
-            text-align: justify;
+            margin-bottom: 25px;
+            text-align: center;
         }
 
-        /* 3D मोबाइल सोशल बटन्स */
+        /* रिस्पॉन्सिव सोशल बटन्स */
         .social-grid {
             display: grid;
-            grid-template-columns: 1fr; /* मोबाइल पर एक के नीचे एक */
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: 1fr; /* मोबाइल पर सिंगल कॉलम */
+            gap: 12px;
         }
 
-        /* अगर स्क्रीन बड़ी है तो दो कॉलम कर दो */
-        @media (min-width: 400px) {
-            .social-grid { grid-template-columns: 1fr 1fr; }
+        @media (min-width: 380px) {
+            .social-grid { grid-template-columns: 1fr 1fr; } /* थोड़े बड़े फोन पर डबल कॉलम */
         }
 
         .btn-3d {
-            padding: 15px;
+            padding: 14px;
             color: white;
             text-decoration: none;
             font-weight: bold;
             border-radius: 10px;
-            display: block;
-            box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-family: 'Poppins', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            transition: transform 0.1s, box-shadow 0.1s;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-3d:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2);
         }
 
         .yt { background: #FF0000; }
         .wa { background: #25D366; }
         .tg { background: #0088cc; }
+        .full-width { grid-column: span 1; }
+        
+        @media (min-width: 380px) {
+            .full-width { grid-column: span 2; }
+        }
 
         footer {
-            margin: 30px 0;
-            font-size: 0.75rem;
-            color: #888;
+            margin: 40px 0 20px;
+            font-size: 0.7rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
+    <header class="header">
         <h1>ST NEWS TV LKO</h1>
-    </div>
+    </header>
 
     <div class="info-bar">
         <span>📍 लखनऊ, UP</span>
@@ -157,23 +181,23 @@
     </div>
 
     <div class="ticker-wrap">
-        <div class="ticker-label">ब्रेकिंग ⚡</div>
+        <div class="ticker-label">BREKING ⚡</div>
         <div class="ticker-text">
-            ST NEWS TV LKO: सच्ची खबरें, बिना किसी मिलावट के... समाज सेवा और असहाय लोगों की मदद हमारा संकल्प...
+            ST NEWS TV LKO: सच्ची खबरें, बिना किसी मिलावट के... समाज सेवा और असहाय लोगों की मदद हमारा संकल्प... लखनऊ की ताज़ा अपडेट्स के लिए हमसे जुड़े रहें...
         </div>
     </div>
 
-    <div class="main-container">
+    <main class="main-container">
         <p class="about-text">
-            ST NEWS TV LKO is a premier digital news platform based in Lucknow, dedicated to delivering authentic and unbiased reporting. Our mission is to promote dialogue, tolerance, and co-existence while serving as a voice for the helpless.
+            ST NEWS TV LKO is a premier digital news platform based in Lucknow, dedicated to delivering authentic and unbiased reporting.
         </p>
 
         <div class="social-grid">
             <a href="https://youtube.com/@stnewstvlko" target="_blank" class="btn-3d yt">YOUTUBE</a>
-            <a href="https://wa.me/your-number" class="btn-3d wa">WHATSAPP</a>
-            <a href="#" class="btn-3d tg">TELEGRAM</a>
+            <a href="https://wa.me/91XXXXXXXXXX" class="btn-3d wa">WHATSAPP</a>
+            <a href="#" class="btn-3d tg full-width">TELEGRAM CHANNEL</a>
         </div>
-    </div>
+    </main>
 
     <center>
         <footer>
